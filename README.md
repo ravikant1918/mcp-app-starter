@@ -1,42 +1,47 @@
-# 🚀 MCP App Starter Kit
+# 🚀 MCP App Starter Kit: Build Interactive Claude Desktop Tools
+### The Ultimate Boilerplate for Model Context Protocol (MCP) Apps
 
-A clean, production-ready starter template for building **Interactive MCP Apps** for Claude Desktop.
+![MCP App Banner](https://img.shields.io/badge/MCP-App_Ready-succes?style=for-the-badge&logo=anthropic&color=6D28D9)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?style=for-the-badge&logo=typescript)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-This starter kit implements the **Model Context Protocol (MCP)** with a focus on **Rich UI** components. It includes a "Markdown Fallback" mechanism to ensure a great user experience even on clients that don't support full interactive UIs (like Claude Free Tier).
+**Create beautiful, interactive dashboards that render directly inside [Claude Desktop](https://claude.ai/download).**
 
-## ✨ Features
+This starter kit is the fastest way to build **MCP Apps**—the next generation of AI tools that go beyond text to offer rich, graphical user interfaces.
 
-*   **Interactive UI**: A beautiful, dark-themed HTML5 dashboard for visualizing data.
-*   **Zero Dependencies**: The UI uses only inline CSS and SVG, ensuring it works in strict CSP environments.
-*   **Markdown Fallback**: Automatically renders a rich markdown table/chart if the UI fails to load.
-*   **Double Signal**: Advertises capabilities in both standard and experimental channels for maximum compatibility.
-*   **TypeScript**: Fully typed server implementation.
+---
 
-## 📂 Project Structure
+## 🌟 Why Use This Starter Kit?
 
-```
-mcp-app-starter/
-├── src/
-│   ├── server.ts       # Main MCP server logic
-│   └── dashboard.html  # The interactive UI file
-├── package.json
-├── tsconfig.json
-└── README.md
-```
+Most MCP servers only return text. This kit upgrades your agent with **Interactive UIs**.
 
-## 🛠️ Usage
+*   **⚡ Zero-Dependency Dashboard**: Includes a pro-grade, dark-themed dashboard that works in strict security environments (no external CDNs).
+*   **🛡️ Bulletproof "Markdown Fallback"**: Exclusive feature! If a user's Claude version doesn't support UIs yet (e.g., Free Tier), it *automatically* renders a beautiful Markdown table & ASCII chart instead. **Your app never breaks.**
+*   **📡 Double-Signal Architecture**: Broadcasts capabilities via both Standard and Experimental channels to ensure maximum compatibility with all Claude versions.
+*   **🚀 Production Ready**: Fully typed TypeScript, clean architecture, and standardized tooling.
 
-### 1. Install & Build
+## 🎯 What You Can Build
+*   Real-time Financial Dashboards (Stocks, Crypto)
+*   Interactive Data Visualizations
+*   Form-based Data Entry Tools
+*   Status Monitors & Control Panels
 
+## 🛠️ Quick Start
+
+### 1. Clone & Install
 ```bash
+git clone https://github.com/ravikant1918/mcp-app-starter.git
+cd mcp-app-starter
 npm install
 npm run build
 ```
 
 ### 2. Configure Claude Desktop
+Edit your config file:
+*   **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+*   **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-Add the following to your `claude_desktop_config.json` (typically found in `~/Library/Application Support/Claude/` on macOS):
-
+Add this:
 ```json
 {
   "mcpServers": {
@@ -49,26 +54,45 @@ Add the following to your `claude_desktop_config.json` (typically found in `~/Li
   }
 }
 ```
-*Note: Replace `/ABSOLUTE/PATH/TO/...` with the actual full path to this directory.*
+*(⚠️ Replace `/ABSOLUTE/PATH/TO/...` with your actual path!)*
 
-### 3. Run it!
-
-1.  Restart Claude Desktop.
+### 3. See the Magic ✨
+1.  **Restart Claude Desktop**.
 2.  Ask: **"Get market data for RELIANCE"**
-3.  🎉 You should see either an **Interactive Dashboard** (if supported) or a **Rich Markdown Report**.
-
-## 🧠 How it Works
-
-1.  **Capability Advertisement**: The server tells Claude it supports `io.modelcontextprotocol/ui` during the initialization handshake.
-2.  **Tool Execution**: When you call `get_market_data`, the server returns a result containing `_meta.ui.resourceUri` pointing to the dashboard.
-3.  **Resource Fetch**: Claude's MCP client sees this URI and calls `resources/read` to fetch the HTML content.
-4.  **Rendering**: Claude renders the HTML in a secure iframe (or displays the Markdown fallback if the feature is unavailable).
-
-## 🛡️ "Markdown Fallback"
-
-Newer versions of Claude Desktop, or Free Tier accounts, might not have the "MCP Apps" feature flag enabled. To solve this, this starter kit includes a clever fallback:
-
-The tool response includes **both** the UI trigger logic AND a text-based Markdown representation of the data. If the client ignores the UI trigger, the user still sees the beautiful markdown table and ASCII charts!
+3.  Enjoy the Interactive Dashboard! (or the rich Markdown fallback if on Free Tier).
 
 ---
-*Created with ❤️ for the MCP Community.*
+
+## 🧠 How It Works (The Architecture)
+
+This kit implements the **[Model Context Protocol (MCP)](https://modelcontextprotocol.io/)** with the **MCP Apps Extension**.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Claude as Claude Desktop
+    participant Server as MCP App Server
+
+    User->>Claude: "Show me market data"
+    Claude->>Server: tools/call (get_market_data)
+    Server-->>Claude: Result + UI Trigger (_meta.ui.resourceUri)
+    
+    alt UI Supported
+        Claude->>Server: resources/read (ui://...)
+        Server-->>Claude: HTML Dashboard
+        Claude->>User: Renders Interactive UI 🖥️
+    else UI Not Supported
+        Claude->>User: Renders Markdown Fallback 📝
+    end
+```
+
+## 📂 Project Structure
+
+*   `src/server.ts`: The brain. Handles MCP protocol, tool execution, and the clever fallback logic.
+*   `src/dashboard.html`: The beauty. A standalone HTML5 file with inline CSS/SVG. No React, no heavy builds—just pure performance.
+
+## 📜 License
+MIT License. Feel free to use this for personal or commercial projects!
+
+---
+*Built with ❤️ for the MCP Community. Star this repo if it helped you! ⭐*
