@@ -1,0 +1,23 @@
+{
+    "name": "mcp-app-starter",
+    "version": "1.0.0",
+    "description": "A starter kit for building interactive MCP Apps for Claude Desktop.",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/server.js",
+        "dev": "tsx src/server.ts",
+        "watch": "tsc -w"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.0.0",
+        "tsx": "^4.19.0",
+        "typescript": "^5.5.0"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}
