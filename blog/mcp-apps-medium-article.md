@@ -1,6 +1,8 @@
 # What Are MCP Apps? A Developer Guide to Interactive AI Tools for Claude
 
-*By [Your Name]*
+*By Ravi kant Yadav*
+
+![Interactive MCP Apps Header](interactive-mcp-apps-claude-desktop.png.png)
 
 You ask an AI to show your cloud costs.
 It replies with 12 lines of text.
@@ -126,9 +128,9 @@ To demonstrate these patterns, I’ve open-sourced a production-ready template:
 **[MCP App Starter Kit](https://github.com/ravikant1918/mcp-app-starter)**
 
 It demonstrates:
-*   ✅ **Zero-Dependency UI**: Runs without external CDNs (CORS/CSP safe).
-*   ✅ **Markdown Fallback**: The strategy described above.
-*   ✅ **Double-Signal Tech**: Broadcasts capabilities to both "Experimental" and "Standard" protocol channels for maximum compatibility.
+*    **Zero-Dependency UI**: Runs without external CDNs (CORS/CSP safe).
+*    **Markdown Fallback**: The strategy described above.
+*    **Double-Signal Tech**: Broadcasts capabilities to both "Experimental" and "Standard" protocol channels for maximum compatibility.
 
 ## The Future: Agent-App Convergence
 
